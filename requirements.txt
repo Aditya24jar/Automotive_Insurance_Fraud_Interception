@@ -1,0 +1,10 @@
+numpy
+pandas
+matplotlib
+seaborn
+flask
+pickle
+sklearn
+xgboost
+optuna
+

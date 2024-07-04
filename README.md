@@ -4,6 +4,44 @@
 This project aims to detect insurance fraud in vehicular accidents using machine learning techniques. Our approach involves data preprocessing, exploratory data analysis (EDA), feature engineering, model building, and deployment using Flask.
 
 
+# Dataset Feature Description
+
+| Feature               | Description                                                              |
+|-----------------------|--------------------------------------------------------------------------|
+| *Month*             | Month of the accident                                                    |
+| *WeekofMonth*       | Week of the accident                                                     |
+| *DayofWeek*         | Day of the accident                                                      |
+| *Make*              | Manufacture company of the car                                           |
+| *AccidentArea*      | Area where the accident took place (Rural or Urban)                      |
+| *DayofWeekClaimed*  | Day of filing the insurance claim                                        |
+| *MonthClaimed*      | Month of filing the insurance claim                                      |
+| *WeekofMonthClaimed*| Week of filing the insurance claim                                       |
+| *Sex*               | Gender of the insurance claimant (Male or Female)                        |
+| *MaritalStatus*     | Marital status of the claimant (Single, Married, Widow, Divorced)        |
+| *Age*               | Age of the insurance policy holder                                       |
+| *Fault*             | Responsible party (Policy holder or Third party)                         |
+| *PolicyType*        | Type of policies issued                                                  |
+| *VehicleCategory*   | Category of the vehicle (Sedan, Sport, Utility)                          |
+| *VehiclePrice*      | Price of the vehicle                                                     |
+| *PolicyNumber*      | Policy number issued to the customer                                     |
+| *RepNumber*         | ID of the person who handles the claim                                   |
+| *Deductible*        | Amount to be deducted before claim disbursement                          |
+| *DriverRating*      | Experience rating of the driver                                          |
+| *DaysPolicyAccident*| Days left in the policy since the accident                               |
+| *DaysPolicyClaim*   | Days left in the policy since filing a claim                             |
+| *PastNumberofClaims*| Number of past claims filed by the customer                              |
+| *AgeofVehicle*      | Age of the vehicle (8 categories)                                        |
+| *AgeofPolicyHolder* | Age of the policy holder (9 categories)                                  |
+| *PoliceReportFiled* | Whether a police report was filed after the accident (Yes or No)         |
+| *WitnessPresent*    | Whether a witness was present during the accident (Yes or No)            |
+| *AgentType*         | Type of insurance agent (Internal or External)                           |
+| *NumberofSupplements*| Number of supplements                                                   |
+| *AddressChangeClaim*| Number of times change of address was requested by the insurance claimant|
+| *NumberofCars*      | Number of cars owned by the claimant                                     |
+| *Year*              | Year of the accident (1994, 1995, 1996)                                  |
+| *BasePolicy*        | Base policy of the insurance (3 categories)                              |
+| *FraudFound_P*      | Whether fraud was found (Binary Class: Yes or No)                        |
+
 
 
 ## Project Structure

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<style>
+    body {
+        background: linear-gradient(to right, #fa8072, #ff9999, #ffa07a); /* Dark gradient background for the body */
+        color: #002147; /* Light text color for better contrast */
+    }
+    .container {
+        background: linear-gradient(to bottom, #ffefd5, #f1f1f1); /* Light gradient background for the container */
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); /* Darker shadow for the container */
+        margin-top: 50px;
+    }
+    .btn-primary {
+        background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient for the button */
+        border: none;
+        color: #ffffff; /* Light text color for the button */
+    }
+    .btn-primary:hover {
+        background: linear-gradient(to right, #2575fc, #6a11cb); /* Gradient for the button on hover */
+    }
+    .form-control {
+        background-color: #2c3e50; /* Dark background for form controls */
+        border: 1px solid #34495e; /* Border to match the form control background */
+        color: #ffffff; /* Light text color for form controls */
+    }
+    .form-control::placeholder {
+        color: #bdc3c7; /* Light placeholder text color */
+    }
+    label {
+        color: #002147; /* Light text color for labels */
+    }
+</style>
+
+
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5 mb-4 text-center">Enter Details for Prediction</h2>
+        <form action="/predict" method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="WeekOfMonth">Week of Month</label>
+                        <select class="form-control" id="WeekOfMonth" name="WeekOfMonth" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="DayOfWeek">Day of Week</label>
+                        <select class="form-control" id="DayOfWeek" name="DayOfWeek" required>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                   <div class="form-group">
+                        <label for="Manufacture_company">Manufacture Company</label>
+                        <select class="form-control" id="Manufacture_company" name="Manufacture_company" required>
+                            <option value="">Select...</option>
+                            <option value="Honda">Honda</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Ford">Ford</option>
+                            <option value="Mazda">Mazda</option>
+                            <option value="Chevrolet">Chevrolet</option>
+                            <option value="Pontiac">Pontiac</option>
+                            <option value="Accura">Accura</option>
+                            <option value="Dodge">Dodge</option>
+                            <option value="Mercury">Mercury</option>
+                            <option value="Jaguar">Jaguar</option>
+                            <option value="Nisson">Nisson</option>
+                            <option value="VW">VW</option>
+                            <option value="Saab">Saab</option>
+                            <option value="Saturn">Saturn</option>
+                            <option value="Porche">Porche</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Mecedes">Mecedes</option>
+                            <option value="Ferrari">Ferrari</option>
+                            <option value="Lexus">Lexus</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="AccidentArea">Accident Area</label>
+                        <select class="form-control" id="AccidentArea" name="AccidentArea" required>
+                            <option value="">Select...</option>
+                            <option value="Urban">Urban</option>
+                            <option value="Rural">Rural</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="DayOfWeekClaimed">Day of Week Claimed</label>
+                        <select class="form-control" id="DayOfWeekClaimed" name="DayOfWeekClaimed" required>
+                            <option value="">Select...</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                            <option value="0">0</option> <!-- Assuming '0' is a valid option -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="MonthClaimed">Month Claimed</label>
+                        <select class="form-control" id="MonthClaimed" name="MonthClaimed" required>
+                            <option value="">Select...</option>
+                            <option value="Jan">Jan</option>
+                            <option value="Nov">Nov</option>
+                            <option value="Jul">Jul</option>
+                            <option value="Feb">Feb</option>
+                            <option value="Mar">Mar</option>
+                            <option value="Dec">Dec</option>
+                            <option value="Apr">Apr</option>
+                            <option value="Aug">Aug</option>
+                            <option value="May">May</option>
+                            <option value="Jun">Jun</option>
+                            <option value="Sep">Sep</option>
+                            <option value="Oct">Oct</option>
+                            <option value="0">0</option> <!-- Assuming '0' is a valid option -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="WeekOfMonthClaimed">Week of Month Claimed</label>
+                        <select class="form-control" id="WeekOfMonthClaimed" name="WeekOfMonthClaimed" required>
+                            <option value="">Select...</option>
+                            <option value="1">1</option>
+                            <option value="4">4</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Sex">Sex</label>
+                        <select class="form-control" id="Sex" name="Sex" required>
+                            <option value="">Select...</option>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                   <div class="form-group">
+                        <label for="MaritalStatus">Marital Status</label>
+                        <select class="form-control" id="MaritalStatus" name="MaritalStatus" required>
+                            <option value="">Select...</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Widow">Widow</option>
+                            <option value="Divorced">Divorced</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Age">Age</label>
+                        <input type="number" class="form-control" id="Age" name="Age" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Fault">Fault</label>
+                        <select class="form-control" id="Fault" name="Fault" required>
+                            <option value="">Select...</option>
+                            <option value="Policy Holder">Policy Holder</option>
+                            <option value="Third Party">Third Party</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="PolicyType">Policy Type</label>
+                        <select class="form-control" id="PolicyType" name="PolicyType" required>
+                            <option value="">Select...</option>
+                            <option value="Sport - Liability">Sport - Liability</option>
+                            <option value="Sport - Collision">Sport - Collision</option>
+                            <option value="Sedan - Liability">Sedan - Liability</option>
+                            <option value="Utility - All Perils">Utility - All Perils</option>
+                            <option value="Sedan - All Perils">Sedan - All Perils</option>
+                            <option value="Sedan - Collision">Sedan - Collision</option>
+                            <option value="Utility - Collision">Utility - Collision</option>
+                            <option value="Utility - Liability">Utility - Liability</option>
+                            <option value="Sport - All Perils">Sport - All Perils</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="VehicleCategory">Vehicle Category</label>
+                        <select class="form-control" id="VehicleCategory" name="VehicleCategory" required>
+                            <option value="">Select...</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Utility">Utility</option>
+                            <option value="Sedan">Sedan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="VehiclePrice">Vehicle Price</label>
+                        <select class="form-control" id="VehiclePrice" name="VehiclePrice" required>
+                            <option value="">Select...</option>
+                            <option value="more than 69000">More than 69000</option>
+                            <option value="20000 to 29000">20000 to 29000</option>
+                            <option value="30000 to 39000">30000 to 39000</option>
+                            <option value="less than 20000">Less than 20000</option>
+                            <option value="40000 to 59000">40000 to 59000</option>
+                            <option value="60000 to 69000">60000 to 69000</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="RepNumber">Rep Number</label>
+                        <input type="number" class="form-control" id="RepNumber" name="RepNumber" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Deductible">Deductible</label>
+                        <select class="form-control" id="Deductible" name="Deductible" required>
+                            <option value="">Select...</option>
+                            <option value="300">300</option>
+                            <option value="400">400</option>
+                            <option value="500">500</option>
+                            <option value="700">700</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="DriverRating">Driver Rating</label>
+                        <select class="form-control" id="DriverRating" name="DriverRating" required>
+                            <option value="">Select...</option>
+                            <option value="1">1</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Days_Policy_Accident">Days Policy Accident</label>
+                        <select class="form-control" id="Days_Policy_Accident" name="Days_Policy_Accident" required>
+                            <option value="">Select...</option>
+                            <option value="more than 30">More than 30</option>
+                            <option value="15 to 30">15 to 30</option>
+                            <option value="none">None</option>
+                            <option value="1 to 7">1 to 7</option>
+                            <option value="8 to 15">8 to 15</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Days_Policy_Claim">Days Policy Claim</label>
+                        <select class="form-control" id="Days_Policy_Claim" name="Days_Policy_Claim" required>
+                            <option value="">Select...</option>
+                            <option value="more than 30">More than 30</option>
+                            <option value="15 to 30">15 to 30</option>
+                            <option value="8 to 15">8 to 15</option>
+                            <option value="none">None</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="PastNumberOfClaims">Past Number Of Claims</label>
+                        <select class="form-control" id="PastNumberOfClaims" name="PastNumberOfClaims" required>
+                            <option value="">Select...</option>
+                            <option value="none">None</option>
+                            <option value="1">1</option>
+                            <option value="2 to 4">2 to 4</option>
+                            <option value="more than 4">More than 4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="AgeOfVehicle">Age Of Vehicle</label>
+                        <select class="form-control" id="AgeOfVehicle" name="AgeOfVehicle" required>
+                            <option value="">Select...</option>
+                            <option value="3 years">3 years</option>
+                            <option value="6 years">6 years</option>
+                            <option value="7 years">7 years</option>
+                            <option value="more than 7">More than 7</option>
+                            <option value="5 years">5 years</option>
+                            <option value="new">New</option>
+                            <option value="4 years">4 years</option>
+                            <option value="2 years">2 years</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="PoliceReportFiled">Police Report Filed</label>
+                        <select class="form-control" id="PoliceReportFiled" name="PoliceReportFiled" required>
+                            <option value="">Select...</option>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="WitnessPresent">Witness Present</label>
+                        <select class="form-control" id="WitnessPresent" name="WitnessPresent" required>
+                            <option value="">Select...</option>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="AgentType">Agent Type</label>
+                        <select class="form-control" id="AgentType" name="AgentType" required>
+                            <option value="">Select...</option>
+                            <option value="External">External</option>
+                            <option value="Internal">Internal</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="NumberOfSuppliments">Number Of Suppliments</label>
+                        <select class="form-control" id="NumberOfSuppliments" name="NumberOfSuppliments" required>
+                            <option value="">Select...</option>
+                            <option value="none">None</option>
+                            <option value="more than 5">More than 5</option>
+                            <option value="3 to 5">3 to 5</option>
+                            <option value="1 to 2">1 to 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="AddressChange_Claim">Address Change Claim</label>
+                        <select class="form-control" id="AddressChange_Claim" name="AddressChange_Claim" required>
+                            <option value="">Select...</option>
+                            <option value="1 year">1 year</option>
+                            <option value="no change">No change</option>
+                            <option value="4 to 8 years">4 to 8 years</option>
+                            <option value="2 to 3 years">2 to 3 years</option>
+                            <option value="under 6 months">Under 6 months</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="NumberOfCars">Number Of Cars</label>
+                        <select class="form-control" id="NumberOfCars" name="NumberOfCars" required>
+                            <option value="1 vehicle">1 vehicle</option>
+                            <option value="2 vehicles">2 vehicles</option>
+                            <option value="3 to 4">3 to 4</option>
+                            <option value="5 to 8">5 to 8</option>
+                            <option value="more than 8">more than 8</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Year">Year</label>
+                        <input type="number" class="form-control" id="Year" name="Year" required>
+                    </div>
+                </div>
+                <!-- Add more rows as needed for your form fields -->
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-4">Predict</button>
+        </form>
+        {% if prediction_text %}
+            <h3 class="mt-3">{{ prediction_text }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>

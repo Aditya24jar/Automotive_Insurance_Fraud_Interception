@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 # Initialize Flask app
-app = Flask(_name_)
+app = Flask(__name__)
 
 # Load the trained model
 model = pickle.load(open('model12.pkl', 'rb'))
@@ -156,5 +156,5 @@ def predict():
     return render_template('index.html', prediction_text='Predicted Target: {}'.format(prediction_text))
 
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True)

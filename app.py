@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 # Initialize Flask app
-app = Flask(__name__)
+app = Flask(_name_)
 
 # Load the trained model
 model = pickle.load(open('model12.pkl', 'rb'))
@@ -49,7 +49,7 @@ policy_type_map = {}
 vehicle_category_map = {}
 
 
-@app.route('/')
+@app.route('/Home')
 def home():
     return render_template('index.html')
 
@@ -138,20 +138,14 @@ def predict():
     data['PolicyType'] = policy_type_map[data['PolicyType']]
     data['VehicleCategory'] = vehicle_category_map[data['VehicleCategory']]
 
-
-
-
-
-
-
     # Convert data to DataFrame
-    df = pd.DataFrame([data])
+    df1 = pd.DataFrame([data])
 
     # Apply scaling
-    df_scaled = scaler.fit_transform(df)
-
+    df_scaled = scaler.fit_transform(df1)
+    data_array = df1.to_numpy()
     # Make prediction
-    prediction = model.predict(df_scaled)
+    prediction = model.predict(data_array)
     if prediction[0] == 1:
         prediction_text = 'Fraud Found'
     else:
@@ -162,5 +156,5 @@ def predict():
     return render_template('index.html', prediction_text='Predicted Target: {}'.format(prediction_text))
 
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     app.run(debug=True)
